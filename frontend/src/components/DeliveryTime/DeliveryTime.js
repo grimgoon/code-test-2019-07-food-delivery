@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DeliveryTimesData from "../../data/delivery-times.json";
 import DeliveryTimeFooter from "./DeliveryTimeFooter/DeliveryTimeFooter";
 import DeliveryTimeItem from "./DeliveryTimeItem/DeliveryTimeItem";
 
 const DeliveryTime = props => {
   const [activeItem, setActiveItem] = useState(null);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+  useEffect(() => {
+    if(!activeItem) {
+        return setIsButtonDisabled(true)
+    }
+    setIsButtonDisabled(false)
+  }, [activeItem]);
 
   const deliveryItems = DeliveryTimesData.sort(
     (a, b) =>
@@ -33,7 +41,7 @@ const DeliveryTime = props => {
         </h4>
         <ul className="time-picker table">{deliveryItems}</ul>
       </div>
-      <DeliveryTimeFooter isButtonDisabled={!activeItem}/>
+      <DeliveryTimeFooter isButtonDisabled={isButtonDisabled}/>
     </section>
   );
 };
