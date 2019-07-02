@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import DeliveryTimesData from "../../data/delivery-times.json";
 import DeliveryTimeFooter from "./DeliveryTimeFooter/DeliveryTimeFooter";
 import DeliveryTimeItem from "./DeliveryTimeItem/DeliveryTimeItem";
 
-const DeliveryTime = () => {
+const DeliveryTime = props => {
+  const [activeItem, setActiveItem] = useState(null);
+
   const deliveryItems = DeliveryTimesData.sort(
     (a, b) =>
       Date.parse("1970/01/01 " + a.startTime) -
       Date.parse("1970/01/01 " + b.startTime)
-  ).map(data => <DeliveryTimeItem key={data.deliveryTimeId} data={data} />);
+  ).map(data => (
+    <DeliveryTimeItem
+      key={data.deliveryTimeId}
+      data={data}
+      activeItem={activeItem}
+      setActive={id => setActiveItem(id)}
+    />
+  ));
 
   return (
     <section className="panel delivery-time">
