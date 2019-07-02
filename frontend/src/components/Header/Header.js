@@ -7,7 +7,7 @@ const Header = () => {
         <div>
           <input id="in-home" name="in-home-check" type="checkbox" />
           <label className="whitespace-none" htmlFor="in-home">
-            <span /> In i kylen-leverans
+            <span/>In i kylen-leverans
             <div className="tag tag-default">För dig med Gluelås</div>
           </label>
         </div>

@@ -1,8 +1,11 @@
 import React from "react";
 import DeliveryTimesData from "../../data/delivery-times.json";
 import DeliveryTimeFooter from "./DeliveryTimeFooter/DeliveryTimeFooter";
-
+import DeliveryTimeItem from "./DeliveryTimeItem/DeliveryTimeItem";
 const DeliveryTime = () => {
+
+    const deliveryItems = DeliveryTimesData.map(data => <DeliveryTimeItem key={data.deliveryTimeId} data={data}/>)
+
   return (
     <section className="panel delivery-time">
       <h2>Leveranstid</h2>
@@ -16,13 +19,7 @@ const DeliveryTime = () => {
           </span>
         </h4>
         <ul className="time-picker table">
-          <li aria-disabled="false">
-            <input name="delivery-time-slot" type="radio" id="47704" />
-            <label className="small" htmlFor="47704">
-              <span />
-              16:00 -<span className="sr">till</span> 21:00
-            </label>
-          </li>
+            {deliveryItems}  
         </ul>
       </div>
       <DeliveryTimeFooter />
