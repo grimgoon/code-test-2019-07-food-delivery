@@ -1,0 +1,19 @@
+Assignment
+
+Create a web view showing delivery time slots based on provided JSON-data, HTML and CSS.
+
+Functionality:
+-	Users should be able to select a delivery time.
+-	Users should be able to tick/untick a checkbox for wanting In Home delivery.
+Logic
+
+The web view should fetch the JSON-data and then render the delivery time list with the fetched times.
+
+The JSON-data needs to be sorted in ascending order based on start time of the delivery slot. 
+
+Combine start and end time to match this format: ‘10:00 - 12:00’ into a new property in the model.
+
+When a user selects a delivery slot the button to proceed should be enabled (while it should be disabled when no slot is selected). While the button is disabled it should also have the CSS class “disabled”.
+
+While user has ticked the In Home delivery checkbox any delivery slots where inHomeAvailable is false should not be listed.
+
