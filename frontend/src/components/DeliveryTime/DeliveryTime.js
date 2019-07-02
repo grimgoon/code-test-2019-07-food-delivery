@@ -15,7 +15,7 @@ const DeliveryTime = props => {
       key={data.deliveryTimeId}
       data={data}
       activeItem={activeItem}
-      setActive={id => setActiveItem(id)}
+      setActive={setActiveItem}
     />
   ));
 
@@ -33,7 +33,7 @@ const DeliveryTime = props => {
         </h4>
         <ul className="time-picker table">{deliveryItems}</ul>
       </div>
-      <DeliveryTimeFooter />
+      <DeliveryTimeFooter isButtonDisabled={!activeItem}/>
     </section>
   );
 };

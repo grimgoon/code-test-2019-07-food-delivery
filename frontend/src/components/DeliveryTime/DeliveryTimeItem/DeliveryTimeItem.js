@@ -1,7 +1,7 @@
 import React from "react";
 
 const DeliveryTimeItem = props => {
-  const {
+  let {
     deliveryTimeId,
     deliveryDate,
     startTime,
@@ -10,6 +10,9 @@ const DeliveryTimeItem = props => {
   } = props.data;
   const { activeItem, setActive } = props;
   const isActive = activeItem === deliveryTimeId ? "active" : "";
+
+  startTime = startTime.slice(0, 5);
+  stopTime = stopTime.slice(0, 5);
 
   return (
     <li
