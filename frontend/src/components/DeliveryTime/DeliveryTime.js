@@ -2,9 +2,13 @@ import React from "react";
 import DeliveryTimesData from "../../data/delivery-times.json";
 import DeliveryTimeFooter from "./DeliveryTimeFooter/DeliveryTimeFooter";
 import DeliveryTimeItem from "./DeliveryTimeItem/DeliveryTimeItem";
-const DeliveryTime = () => {
 
-    const deliveryItems = DeliveryTimesData.map(data => <DeliveryTimeItem key={data.deliveryTimeId} data={data}/>)
+const DeliveryTime = () => {
+  const deliveryItems = DeliveryTimesData.sort(
+    (a, b) =>
+      Date.parse("1970/01/01 " + a.startTime) -
+      Date.parse("1970/01/01 " + b.startTime)
+  ).map(data => <DeliveryTimeItem key={data.deliveryTimeId} data={data} />);
 
   return (
     <section className="panel delivery-time">
@@ -18,9 +22,7 @@ const DeliveryTime = () => {
             Du får SMS med exakt leveranstid
           </span>
         </h4>
-        <ul className="time-picker table">
-            {deliveryItems}  
-        </ul>
+        <ul className="time-picker table">{deliveryItems}</ul>
       </div>
       <DeliveryTimeFooter />
     </section>
