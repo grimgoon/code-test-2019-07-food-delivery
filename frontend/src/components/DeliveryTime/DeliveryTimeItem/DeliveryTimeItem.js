@@ -1,22 +1,24 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 const DeliveryTimeItem = props => {
   let {
     deliveryTimeId,
-    deliveryDate,
     startTime,
     stopTime,
     inHomeAvailable
   } = props.data;
-  const { activeItem, setActive } = props;
+  const { activeItem, setActive, isInHomeActive} = props;
+
   const isActive = activeItem === deliveryTimeId ? "active" : "";
+  const isDisabled = isInHomeActive && !inHomeAvailable ? "disabled" : "";
+  const classes = [isActive, isDisabled].join(" ");
 
   startTime = startTime.slice(0, 5);
   stopTime = stopTime.slice(0, 5);
 
   return (
     <li
-      className={isActive}
+      className={classes}
       aria-disabled="false"
       onClick={() => setActive(deliveryTimeId)}
     >

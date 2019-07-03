@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Header setInHomeAvailable={setInHomeAvailable} />
-      <DeliveryTime isInHomeAvailable={inHomeAvailable} />
+      <DeliveryTime isInHomeActive={inHomeAvailable} />
     </>
   );
 }

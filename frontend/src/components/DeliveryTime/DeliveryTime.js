@@ -4,15 +4,28 @@ import DeliveryTimeFooter from "./DeliveryTimeFooter/DeliveryTimeFooter";
 import DeliveryTimeItem from "./DeliveryTimeItem/DeliveryTimeItem";
 
 const DeliveryTime = props => {
+  const { isInHomeActive } = props;
   const [activeItem, setActiveItem] = useState(null);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   useEffect(() => {
-    if(!activeItem) {
-        return setIsButtonDisabled(true)
+    if (!activeItem) {
+      return setIsButtonDisabled(true);
     }
-    setIsButtonDisabled(false)
+    setIsButtonDisabled(false);
   }, [activeItem]);
+
+  useEffect(() => {
+    if (activeItem) {
+      const isDisabledItem = DeliveryTimesData.find(
+        data =>
+          data.deliveryTimeId === activeItem && data.inHomeAvailable === false
+      );
+      if (isDisabledItem) {
+        setActiveItem(null);
+      }
+    }
+  }, [isInHomeActive]);
 
   const deliveryItems = DeliveryTimesData.sort(
     (a, b) =>
@@ -24,6 +37,7 @@ const DeliveryTime = props => {
       data={data}
       activeItem={activeItem}
       setActive={setActiveItem}
+      isInHomeActive={isInHomeActive}
     />
   ));
 
@@ -41,7 +55,7 @@ const DeliveryTime = props => {
         </h4>
         <ul className="time-picker table">{deliveryItems}</ul>
       </div>
-      <DeliveryTimeFooter isButtonDisabled={isButtonDisabled}/>
+      <DeliveryTimeFooter isButtonDisabled={isButtonDisabled} />
     </section>
   );
 };
